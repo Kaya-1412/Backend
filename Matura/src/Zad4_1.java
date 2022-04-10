@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Formatter;
 
 // program działa, ale output jest w innej kolejności niż przewiduje arkusz z rozwiązaniami.
 
@@ -22,15 +23,26 @@ public class Zad4_1 {
             }
             // dodaje nową wartość do tablicy
             else {
-            galerie.put(input, 1);
+                galerie.put(input, 1);
             }
         }
-            // wypisuje hashMap
+        // wypisuje hashMap
+        //for (String i : galerie.keySet()) {
+            //System.out.print(i + " ");
+          //  System.out.println(galerie.get(i));
+        //}
+        try{
+            Formatter wynik = new Formatter("/home/mira/Dokumenty/JavaProjects/BE/Matura/src/wynik4_1.txt");
             for (String i : galerie.keySet()) {
-                System.out.print(i + " ");
-                System.out.println(galerie.get(i));
-            }
+                wynik.format("%s" + i + " ");//System.out.print(i + " ");
+                wynik.format("%s" + galerie.get(i));//  System.out.println(galerie.get(i));
+            }//}
+            wynik.format(galerie.toString());
+            wynik.close();
+        } catch (Exception e) {
+            System.out.print("Error");
         }
+    }
 }
 
 
