@@ -5,27 +5,32 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-// odczyt (tylko) 1. Stringa w lini w pliku txt
-///// -> zapis do obiektu 'kraj', string pool??? porównać obiekty->if equals then private int licznikKraj +1, else new obiekt
-
-// zlicz powtarzające się wartości
-// wypisz wartość oraz jej liczebność
+// program działa, ale output jest w innej kolejności niż przewiduje arkusz z rozwiązaniami.
 
 public class Zad4_1 {
     public static void main(String[] args) throws FileNotFoundException {
         Scanner readGalerie = new Scanner(new File("/home/mira/Dokumenty/JavaProjects/BE/Matura/src/galerie.txt"));
-        // tablica licząca kraje
         HashMap<String, Integer> galerie = new HashMap<String, Integer>();
-        String input = readGalerie.next();
-        galerie.put(input, 1);
-        if (galerie.containsKey(input)){
-            int x = galerie.get(input) + 1;
-            galerie.put(input, x);
+        //odczyt
+        while (readGalerie.hasNextLine()) {
+            String input = readGalerie.next();
+            readGalerie.nextLine();
+            // dodaje value +1 jeżeli kraj się powtarza
+            if (galerie.containsKey(input)) {
+                int x = galerie.get(input) + 1;
+                galerie.put(input, x);
+            }
+            // dodaje nową wartość do tablicy
+            else {
+            galerie.put(input, 1);
+            }
         }
-        readGalerie.nextLine();
-        System.out.println(galerie);
-
-    }
+            // wypisuje hashMap
+            for (String i : galerie.keySet()) {
+                System.out.print(i + " ");
+                System.out.println(galerie.get(i));
+            }
+        }
 }
 
 
