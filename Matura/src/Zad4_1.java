@@ -2,8 +2,8 @@ package Matura2021marzec;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 // odczyt (tylko) 1. Stringa w lini w pliku txt
 ///// -> zapis do obiektu 'kraj', string pool??? porównać obiekty->if equals then private int licznikKraj +1, else new obiekt
@@ -13,7 +13,17 @@ import java.util.ArrayList;
 
 public class Zad4_1 {
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner readGalerie = new Scanner(new File("galerie.txt"));
+        Scanner readGalerie = new Scanner(new File("/home/mira/Dokumenty/JavaProjects/BE/Matura/src/galerie.txt"));
+        // tablica licząca kraje
+        HashMap<String, Integer> galerie = new HashMap<String, Integer>();
+        String input = readGalerie.next();
+        galerie.put(input, 1);
+        if (galerie.containsKey(input)){
+            int x = galerie.get(input) + 1;
+            galerie.put(input, x);
+        }
+        readGalerie.nextLine();
+        System.out.println(galerie);
 
     }
 }
